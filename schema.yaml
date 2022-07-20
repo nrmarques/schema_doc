@@ -83,7 +83,6 @@ variables:
     required: true
     title: "Subnet CIDR Block"
     description: "CIDR for the subnet"
-    pattern: "^(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9])"
 
 # Compute Configuration 
   vm_compartment_id:
