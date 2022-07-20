@@ -1,7 +1,7 @@
 # schema_doc
 Terraform with Schema Document - Provisioning template for a single VCN, subnet and compute instance
 
-![image](schema docs.png)
+![image](schema.png)
 
 Terraform .tf files and schema to provide easy infrastructure deployment templates.
 
