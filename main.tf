@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     oci = {
-        sourcesource = "hashicorp/oci"
+        source = "hashicorp/oci"
     }
   }
 }
