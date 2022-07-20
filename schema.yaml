@@ -59,7 +59,6 @@ variables:
     required: true
     title: "VCN CIDR Block"
     description: "CIDR for the VCN"
-    pattern: "^(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9])"
 
 # Subnet Configuration 
   subnet_compartment_id:
