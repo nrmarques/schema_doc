@@ -1,0 +1,120 @@
+title: "Example Application"
+description: "Terraform with Schema Document"
+informationalText: "Provisions a single VCN, subnet and compute instance"
+schemaVersion: 1.1.0
+version: "1"
+locale: "en"
+
+variableGroups:
+  - title: "Hiden Variables"
+    visible: false
+    variables:
+      - region
+  - title: "VCN Configuration"
+    variables:
+      - vcn_compartment_id
+      - vcn_display_name
+      - vcn_dns_label
+      - vcn_cidr_block
+  - title: "Subnet Configuration"
+    variables:
+      - subnet_compartment_id
+      - subnet_display_name
+      - subnet_dns_label
+      - subnet_cidr_block
+  - title: "Compute Configuration"
+    variables:
+      - vm_compartment_id
+      - vm_display_name
+      - vm_shape_name
+      - vm_image_id
+      - availability_domain
+
+variables:
+#Hidden Variables
+  region: 
+    type: oci:identity_region:name
+    title: Region
+    required: true
+
+# VCN Configuration
+  vcn_compartment_id:
+    type: oci:identity:compartment:id
+    required: true
+    title: "VCN Compartment"
+    description: "The compartment for VCN"
+  vcn_display_name: 
+    type: string
+    required: true
+    title: "VCN Name"
+    description: "The name for the VCN"
+  vcn_dns_label:
+    type: string
+    required: true
+    title: "DNS Label"
+    maxLenght: 15
+    description: "VCN DNS Label. Alphanumeric starting with a letter"
+  vcn_cidr_block:
+    type: string
+    required: true
+    title: "VCN CIDR Block"
+    description: "CIDR for the VCN"
+    pattern: "^(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9])"
+
+# Subnet Configuration 
+  subnet_compartment_id:
+    type: oci:identity:compartment:id
+    required: true
+    title: "Subnet Compartment"
+    description: "The compartment for the subnet"
+  subnet_display_name: 
+    type: string
+    required: true
+    title: "Subnet Name"
+    description: "The name for the subnet"
+  subnet_dns_label:
+    type: string
+    required: true
+    title: "DNS Label for th subnet"
+    maxLenght: 15
+    description: "Subnet DNS Label. Alphanumeric starting with a letter"
+  subnet_cidr_block:
+    type: string
+    required: true
+    title: "Subnet CIDR Block"
+    description: "CIDR for the subnet"
+    pattern: "^(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9]).(25)[0-5]|2[0-4][0-9]|1[0-9][0-9]?[0-9])"
+
+# Compute Configuration 
+  vm_compartment_id:
+    type: oci:identity:compartment:id
+    required: true
+    title: "Compute Compartment"
+    description: "The compartment for the compute instances"
+  vm_display_name: 
+    type: string
+    required: true
+    title: "Instance Name"
+    description: "The name for the instance"
+  vm_shape_name: 
+    type: oci:core:instanceshape:name
+    required: true
+    title: "Compute Shape"
+    default: "VM.Standart2.1"
+    dependsOn: 
+        compartmentId: vm_compartment_id
+  vm_image_id: 
+    type: oci:core:image:id
+    required: true
+    title: "Image"
+    description: "Compute Image"
+    dependsOn: 
+      compartmentId: vm_compartment_id
+      shape: vm_shape_name
+  availability_domain: 
+    type: oci:identity:availabilitydomain:name
+    required: true
+    title: "Availability Domain"
+    dependsOn: 
+      compartmentId: vm_compartment_id
+    default: 1
